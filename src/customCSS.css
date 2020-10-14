@@ -1,0 +1,22 @@
+body{
+    background-image: url('./asset/background.jpg');
+}
+
+h1{
+    color: white;
+    margin: 70px 0px 70px 0px;
+    padding: 5px;
+    text-align: center;
+    background-color: rgba(0,0,0,0.3);
+    font-weight: 750;
+}
+
+.box{
+    background-color: white;
+    border-radius: 5%;
+    max-width: 500px;
+    margin: 70px auto;
+    box-shadow: 5px 5px 15px -5px rgba(0,0,0,0.3);
+    border: 10px;
+    border-color: rgba(0,0,0,0.3);
+}
