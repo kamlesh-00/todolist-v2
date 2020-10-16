@@ -16,12 +16,12 @@ class NewToDo extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    const letters = /^[A-Za-z]+$/;
+    const letters = /^[A-Za-z\s]+$/;
     const title = this.state.title;
     if (letters.test(title) && title.trim() !== "") {
       let x = Math.floor(Math.random() * 999) + 1;
       this.props.addData({
-        title: this.state.title,
+        title: this.state.title.trim(),
         date: this.state.date,
         id: x,
         type: "Active",
