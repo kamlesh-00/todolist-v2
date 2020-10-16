@@ -8,7 +8,7 @@ class NewToDo extends Component {
     this.state = {
       title: "",
       date: "",
-      errors: {},
+      errors: "",
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -16,13 +16,27 @@ class NewToDo extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    let x = Math.random() * 9999999 + 1;
-    this.props.addData({
-      title: this.state.title,
-      date: this.state.date,
-      id: x,
-      type: "Active",
-    });
+    const letters = /^[A-Za-z]+$/;
+    const title = this.state.title;
+    if (letters.test(title) && title.trim() !== "") {
+      let x = Math.floor(Math.random() * 999) + 1;
+      this.props.addData({
+        title: this.state.title,
+        date: this.state.date,
+        id: x,
+        type: "Active",
+      });
+      console.log("Submitted");
+      this.setState({
+        title: "",
+        date: "",
+        errors: "",
+      });
+    } else {
+      this.setState({
+        errors: "Please fill properly with no numbers and try again!",
+      });
+    }
   };
 
   handleChange = (event) => {
@@ -34,13 +48,14 @@ class NewToDo extends Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <div className="form-inline">
+      <form onSubmit={this.handleSubmit} className="col-12">
+        <div className=" form-inline center">
           <input
             type="text"
             name="title"
             className="form-control mr-2"
             id="title"
+            value={this.state.title}
             placeholder="Enter title"
             onChange={this.handleChange}
           />
@@ -49,6 +64,7 @@ class NewToDo extends Component {
             name="date"
             className="form-control mr-2"
             id="date"
+            value={this.state.date}
             onChange={this.handleChange}
           />
           <button
@@ -59,6 +75,9 @@ class NewToDo extends Component {
             data-placement="right">
             <i class="fa fa-paper-plane"></i>
           </button>
+        </div>
+        <div className="center">
+          <p className="text-danger">{this.state.errors}</p>
         </div>
       </form>
     );

@@ -10,13 +10,11 @@ class ListOfItems extends Component {
   }
 
   handleDelete = (event) => {
-    const target = event.target;
-    this.props.deleteData(target.value);
+    this.props.deleteData(this.props.todoData.id);
   };
 
   handleCompleted = (event) => {
-    const target = event.target;
-    this.props.setComplete(target.value);
+    this.props.setComplete(this.props.todoData.id);
   };
 
   render() {
@@ -24,31 +22,39 @@ class ListOfItems extends Component {
     const data =
       type === "Active" ? (
         <>
-          <p className="title text-primary">{todoData.title}</p>
-          <p className="small">{todoData.date}</p>
           <button
             onClick={this.handleCompleted}
-            data-toggle="tooltip"
             title="Completed"
+            name="Completed"
             value={todoData.id}
-            className="btn btn-success rightIcon">
+            className="btn btn-success complete ml-3">
             <i className="fa fa-check" />
           </button>
+          <p className="title text-primary">{todoData.title}</p>
+          <p className="small">{todoData.date}</p>
         </>
       ) : (
         <>
+          <button
+            onClick={this.handleCompleted}
+            title="Completed"
+            name="Completed"
+            value={todoData.id}
+            className="btn btn-success complete ml-3 invisible">
+            <i className="fa fa-check" />
+          </button>
           <p className="title text-success">{todoData.title}</p>
           <p className="small">{todoData.date}</p>
         </>
       );
     return (
-      <div className="form-inline col-12">
+      <div className="form-inline">
         <div className="item">
           <button
             onClick={this.handleDelete}
-            className="btn btn-danger"
+            className="btn btn-danger complete"
             value={todoData.id}
-            data-toggle="tooltip"
+            name="Delete"
             title="Delete">
             <i className="fa fa-trash" />
           </button>

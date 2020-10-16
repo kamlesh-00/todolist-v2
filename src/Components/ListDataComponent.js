@@ -30,34 +30,36 @@ class ListData extends Component {
   };
 
   render() {
-    const { data, type } = this.state;
+    const { data } = this.state;
     let list = data.map((neww) => (
-      <ListOfItems todoData={neww} type={neww.type} />
+      <div className="col-12">
+        <ListOfItems todoData={neww} type={neww.type} />
+      </div>
     ));
     return (
-      <div className="container">
-        <div className="btn-group row">
+      <>
+        <div className="btn-group col-12 mb-5">
           <button
             onClick={this.handleClick}
             name="Active"
-            className="btn btn-primary">
+            className="btn btn-primary col-4">
             Active
           </button>
           <button
             onClick={this.handleClick}
             name="Completed"
-            className="btn btn-success">
+            className="btn btn-success col-4">
             Completed
           </button>
           <button
             onClick={this.handleClick}
             name="All"
-            className="btn btn-secondary">
+            className="btn btn-secondary col-4">
             All
           </button>
-          {list}
         </div>
-      </div>
+        <div className="center-list mb-5">{list}</div>
+      </>
     );
   }
 }

@@ -11,9 +11,9 @@ const initialState = {
 export default function (state = initialState, actions) {
   switch (actions.type) {
     case SET_DATA:
-      state.data.push(actions.payload);
       return {
         ...state,
+        data: state.data.concat([actions.payload]),
       };
     case SET_COMPLETED:
       let data = state.data.filter((d) => d.id === actions.payload)[0];
@@ -21,16 +21,14 @@ export default function (state = initialState, actions) {
       let changedData = state.data.filter(
         (data) => data.id !== actions.payload
       );
-      changedData.push(data);
       return {
         ...state,
-        data: changedData,
+        data: changedData.concat(data),
       };
     case DELETE_DATA:
-      let a = state.data.filter((data) => data.id !== actions.payload);
       return {
         ...state,
-        data: a,
+        data: state.data.filter((data) => data.id !== actions.payload),
       };
     default:
       return state;

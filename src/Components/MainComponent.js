@@ -5,11 +5,13 @@ import NewToDo from "./NewToDoComponent";
 function Main() {
   return (
     <div className="container">
-      <h1>To Do List</h1>
-      <div className="box container">
+      <div className="row">
+        <h1>To Do List</h1>
+      </div>
+      <div className="row">
         <ListData />
       </div>
-      <div className="box container">
+      <div className="row">
         <NewToDo />
       </div>
     </div>
